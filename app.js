@@ -10,23 +10,23 @@ io.on('connection', function (client) {
 
     console.log('client connected');
 
-        client.on('join', function (nickName) {
-                console.log("user - ",nickName, "joined");
-
-                client.nickName = nickName;
-        });
-
-        client.on('messages', function (data) {
-                  client.broadcast.emit('messages', data);
-                  //saveMessages(data);
-        });
-
-         client.on('disconnect',function(){
-                  console.log("user -"+client.nickName+" left the chat");
-                  client.broadcast.emit('removechatter',client.nickName);
-
-
-          });
+        // client.on('join', function (nickName) {
+        //         console.log("user - ",nickName, "joined");
+        //
+        //         client.nickName = nickName;
+        // });
+        //
+        // client.on('messages', function (data) {
+        //           client.broadcast.emit('messages', data);
+        //           //saveMessages(data);
+        // });
+        //
+        //  client.on('disconnect',function(){
+        //           console.log("user -"+client.nickName+" left the chat");
+        //           client.broadcast.emit('removechatter',client.nickName);
+        //
+        //
+        //   });
 
 });
 
