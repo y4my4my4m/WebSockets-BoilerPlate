@@ -1,10 +1,7 @@
 # WebSockets-BoilerPlate
-simple boiler plate to try out a chat application with socket io in nodejs
-
-Do a npm install from the project directory to resolve the dependencies
-
-Execute nodemon app.js and open browser, hit localhost://8080 to see the chat ui
 
 
-# Uncomment the implementation code to have the socket io event callbacks bindings
-# To have the Chat working :)
+1 - npm install
+2 - `pm2 app.js` or `node app.js`
+3 - `pm2 restart 0 && pm2 logs 0`
+4 - http://localhost:8080 
