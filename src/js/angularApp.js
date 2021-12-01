@@ -7,17 +7,24 @@ app.controller("chatController", function ($scope) {
   $scope.userName = prompt("Enter your ChatName");
 
   var socket = io.connect('http://localhost:8080', {
-    transports: ['polling', 'websocket'],
-    upgrade: true
+    // default↓
+    // transports: ['polling', 'websocket'],
+    // upgrade: true
   });
   socket.on("connect", function () {
-
+    
     socket.emit('join', $scope.userName);
-    socket.on('ping', (ping) => {
-      console.log("socket ping: ", ping);
-    });
-    socket.on('pong', (pong) => {
-        console.log("socket pong: ", pong);
+    
+    socket.on('ping', () => {
+      let isPolling = socket.io.engine.transport.polling ? true : false;
+      if (isPolling) {
+        console.log(`socket transport type is polling: ${isPolling}, failed to upgrade to websocket`);
+        socket.emit("upgrade_fail");
+      }
+      else {
+        console.log(`socket transport type is not polling, upgraded to websocket`);
+        socket.emit("upgrade_success");
+      }
     });
   });
 
